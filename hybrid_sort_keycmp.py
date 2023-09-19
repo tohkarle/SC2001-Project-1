@@ -17,66 +17,60 @@ import numpy as np
 
 class HybridSortKeyCmp:
 
-    S_FIXED = 99
-    MIN_INPUT_SIZE = 1000
-    MAX_INPUT_SIZE = 10_000_000
-
-    INPUT_SIZE_FIXED = 1000
-    MIN_S = 1
-    MAX_S = 1000
-
-    DATASETS = 10
-
-    def average_key_cmps_with_s_fixed():
+    @staticmethod
+    def average_key_cmps_with_s_fixed(min_input_size, max_input_size, s_fixed, random_tests):
         # S fixed at 99 (TBC)
         # Input size range from 1000 to 10000000
-        averageKeyCmps = []
+        average_key_cmps = []
         num_points = 100
 
         # Generate input sizes on a logarithmic scale
-        sizes = np.logspace(np.log10(HybridSortKeyCmp.MIN_INPUT_SIZE), np.log10(HybridSortKeyCmp.MAX_INPUT_SIZE), num=num_points, dtype=int)
+        input_sizes = np.logspace(np.log10(min_input_size), np.log10(max_input_size), num=num_points, dtype=int)
 
-        for size in sizes:
-            averageKeyCmp = HybridSortKeyCmp.average_key_cmp(size)
-            averageKeyCmps.append(averageKeyCmp)
+        for input_size in input_sizes:
+            average_key_cmp = HybridSortKeyCmp.average_key_cmp(input_size, s_fixed, random_tests)
+            average_key_cmps.append(average_key_cmp)
 
-        print(sizes)
-        print(averageKeyCmps)
+        # print(input_sizes)
+        # print(average_key_cmps)
 
-        return averageKeyCmps
+        return input_sizes, average_key_cmps
     
 
-    def average_key_cmps_with_n_fixed():
+    @staticmethod
+    def average_key_cmps_with_n_fixed(min_s, max_s, input_size_fixed, random_tests):
         # Input size fixed at 1000 (TBC)
         # S value range from 1 to 1000
-        averageKeyCmps = []
+        average_key_cmps = []
         s_values = []
         num_points = 100
 
         # Genearate different S values on a logarithmic scale
-        s_values = np.logspace(np.log10(HybridSortKeyCmp.MIN_S), np.log10(HybridSortKeyCmp.MAX_S), num=num_points, dtype=int)
+        s_values = np.logspace(np.log10(min_s), np.log10(max_s), num=num_points, dtype=int)
 
         for s_value in s_values:
-            averageKeyCmp = HybridSortKeyCmp.average_key_cmp(S = s_value)
-            averageKeyCmps.append(averageKeyCmp)
+            average_key_cmp = HybridSortKeyCmp.average_key_cmp(input_size_fixed, s_value, random_tests)
+            average_key_cmps.append(average_key_cmp)
 
-        print(s_values)
-        print(averageKeyCmps)
+        # print(s_values)
+        # print(average_key_cmps)
 
-        return averageKeyCmps
+        return s_values, average_key_cmps
 
 
-    def average_key_cmp(size = INPUT_SIZE_FIXED, S = S_FIXED):
+    @staticmethod
+    def average_key_cmp(size, S, random_tests):
         # For each size, generate 10 random datasets [1, ... , x] and take the average number of key comparisons of the 10
-        averageKeyCmp = 0
+        average_key_cmp = 0
 
-        for i in range(HybridSortKeyCmp.DATASETS):
-            initialKeyCmp = 0
+        for i in range(random_tests):
+            initial_key_cmp = 0
             arr = GenerateInput.generate_array(size)
-            finalKeyCmp = HybridSort.sort(arr, S, initialKeyCmp)
-            print(finalKeyCmp)
-            averageKeyCmp += finalKeyCmp
+            final_key_cmp = HybridSort.sort(arr, S, initial_key_cmp)
+            print(final_key_cmp)
+            average_key_cmp += final_key_cmp
 
-        averageKeyCmp /= HybridSortKeyCmp.DATASETS
-        print(averageKeyCmp)
-        return averageKeyCmp
+        average_key_cmp /= random_tests
+        return average_key_cmp
+    
+# HybridSortKeyCmp.average_key_cmps_with_n_fixed(1, 1000, 1000, 10)
