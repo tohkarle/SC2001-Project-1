@@ -45,6 +45,9 @@ class HybridSortKeyCmp:
         s_values = []
         num_points = 100
 
+        # for i in range(min_s, max_s):
+        #     s_values.append(i)
+
         # Genearate different S values on a logarithmic scale
         s_values = np.logspace(np.log10(min_s), np.log10(max_s), num=num_points, dtype=int)
 
@@ -71,6 +74,7 @@ class HybridSortKeyCmp:
             average_key_cmp += final_key_cmp
 
         average_key_cmp /= random_tests
+        # print(average_key_cmp)
         return average_key_cmp
     
 # HybridSortKeyCmp.average_key_cmps_with_n_fixed(1, 1000, 1000, 10)
