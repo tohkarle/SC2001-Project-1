@@ -1,7 +1,7 @@
 class Mergesort:
 
     @staticmethod
-    def sort(arr):
+    def sort(arr, keyCmp):
         if len(arr) > 1:
             # Partition list into 2 equal size
             mid = len(arr) // 2
@@ -9,12 +9,12 @@ class Mergesort:
             right_half = arr[mid:]
 
             # Mergesort left_half and right_half
-            Mergesort.sort(left_half)
-            Mergesort.sort(right_half)
-            Mergesort.merge(arr, left_half, right_half)
+            return Mergesort.sort(left_half, keyCmp) + Mergesort.sort(right_half, keyCmp) + Mergesort.merge(arr, left_half, right_half, keyCmp)
+        
+        return keyCmp
 
     @staticmethod
-    def merge(arr, left_half, right_half):
+    def merge(arr, left_half, right_half, keyCmp):
         i = j = k = 0
 
         # Compare the first element of the 2 halves
@@ -24,11 +24,13 @@ class Mergesort:
             if left_half[i] < right_half[j]:
                 arr[k] = left_half[i]
                 i += 1
+                keyCmp += 1
             
             # Else if right_half[j] is smaller, right_half[j] joins the end of the merged list
             else:
                 arr[k] = right_half[j]
                 j += 1
+                keyCmp += 1
             
             k += 1
 
@@ -43,3 +45,7 @@ class Mergesort:
             arr[k] = right_half[j]
             j += 1
             k += 1
+
+        return keyCmp
+    
+

@@ -8,6 +8,9 @@ import random
 class GenerateInput:
     MIN_VALUE = 1
 
+    # Decided to use this as the value of x because if x is too small, there will be a lot of repeated elements in array of size 10_000_000
+    MAX_VALUE = 100_000_000
+
     @staticmethod
-    def generate_array(size, max_value):
-        return [random.randint(GenerateInput.MIN_VALUE, max_value) for _ in range(size)]
+    def generate_array(size):
+        return [random.randint(GenerateInput.MIN_VALUE, GenerateInput.MAX_VALUE) for _ in range(size)]
