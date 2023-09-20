@@ -1,5 +1,5 @@
-from insertion_sort import InsertionSort
-from mergesort import Mergesort
+from algorithms.insertion_sort import InsertionSort
+from algorithms.mergesort import Mergesort
 
 class HybridSort:
 

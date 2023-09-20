@@ -1,5 +1,5 @@
 from generate_input import GenerateInput
-from mergesort import Mergesort
+from algorithms.mergesort import Mergesort
 
 class MergesortKeyCmp:
 
@@ -15,7 +15,6 @@ class MergesortKeyCmp:
             average_key_cmp += final_key_cmp
 
         average_key_cmp /= random_tests
-        print(average_key_cmp)
 
         return average_key_cmp
     

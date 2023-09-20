@@ -12,9 +12,9 @@ iii. Using different sizes of input datasets, study how to determine an optimal 
 """
 
 from generate_input import GenerateInput
-from insertion_sort import InsertionSort
-from mergesort import Mergesort
-from hybrid_sort import HybridSort
+from algorithms.insertion_sort import InsertionSort
+from algorithms.mergesort import Mergesort
+from algorithms.hybrid_sort import HybridSort
 from mergesort_key_cmp import MergesortKeyCmp
 from insetion_sort_key_cmp import InsertionSortKeyCmp
 import numpy as np
@@ -110,4 +110,4 @@ class HybridSortKeyCmp:
 # HybridSortKeyCmp.average_key_cmps_with_n_fixed(2, 20, 1000, 1)
 # HybridSortKeyCmp.average_optimal_s_values(2, 20, 1000, 10000000, 1)
 # HybridSortKeyCmp.average_key_cmps_with_s_fixed(1000, 10000000, 99, 1)
-HybridSortKeyCmp.average_key_cmps_for_optimal_s(2, 100, 10)
+# HybridSortKeyCmp.average_key_cmps_for_optimal_s(2, 100, 10)

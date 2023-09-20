@@ -1,5 +1,5 @@
 from generate_input import GenerateInput
-from insertion_sort import InsertionSort
+from algorithms.insertion_sort import InsertionSort
 
 class InsertionSortKeyCmp:
     
@@ -15,7 +15,6 @@ class InsertionSortKeyCmp:
             average_key_cmp += final_key_cmp
 
         average_key_cmp /= random_tests
-        print(average_key_cmp)
 
         return average_key_cmp
     
