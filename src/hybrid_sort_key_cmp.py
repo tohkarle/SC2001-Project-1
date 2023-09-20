@@ -12,8 +12,6 @@ iii. Using different sizes of input datasets, study how to determine an optimal 
 """
 
 from generate_input import GenerateInput
-from insertion_sort import InsertionSort
-from mergesort import Mergesort
 from hybrid_sort import HybridSort
 from mergesort_key_cmp import MergesortKeyCmp
 from insetion_sort_key_cmp import InsertionSortKeyCmp
@@ -56,10 +54,6 @@ class HybridSortKeyCmp:
 
         for i in range(min_s, max_s + 1):
             s_values.append(i)
-
-        # Genearate different S values on a logarithmic scale
-        # s_values = np.logspace(np.log10(min_s), np.log10(max_s), num=num_points, dtype=int)
-        # s_values = list(dict.fromkeys(s_values))  # Remove duplicates
 
         for s_value in s_values:
             average_key_cmp = HybridSortKeyCmp.average_key_cmp(input_size_fixed, s_value, random_tests)

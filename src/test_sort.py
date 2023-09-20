@@ -34,6 +34,6 @@ class TestSort:
             print(f"Number of key comparisons: {totalKeyCmp}")
 
 
-# TestSort.test(InsertionSort.sort)
-# TestSort.test(Mergesort.sort)
+TestSort.test(InsertionSort.sort)
+TestSort.test(Mergesort.sort)
 TestSort.test(HybridSort.sort)
