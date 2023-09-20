@@ -71,6 +71,25 @@ class HybridSortKeyCmp:
         return s_values, average_key_cmps
 
 
+    @staticmethod
+    def average_key_cmps_for_optimal_s(min_input_size, max_input_size, random_tests):
+        # S value is essentially the threshold array size in which Insertion sort performs better than Mergesort
+        # For determining optimal S, we are going to plot Average Key Cmp VS Array Size (S) for both Insertion Sort and Mergesort
+        mergesort_average_key_cmps = []
+        insertion_sort_average_key_cmps = []
+        array_sizes = []
+
+        for i in range(min_input_size, max_input_size + 1):
+            array_sizes.append(i)
+
+        for array_size in array_sizes:
+            mergesort_average_key_cmp = MergesortKeyCmp.average_key_cmp(array_size, random_tests)
+            insertion_sort_average_key_cmp = InsertionSortKeyCmp.average_key_cmp(array_size, random_tests)
+            mergesort_average_key_cmps.append(mergesort_average_key_cmp)
+            insertion_sort_average_key_cmps.append(insertion_sort_average_key_cmp)
+
+        return array_sizes, mergesort_average_key_cmps, insertion_sort_average_key_cmps
+
 
     @staticmethod
     def average_key_cmp(size, S, random_tests):
@@ -86,45 +105,6 @@ class HybridSortKeyCmp:
         average_key_cmp /= random_tests
         # print(average_key_cmp)
         return average_key_cmp
-
-    @staticmethod
-    def average_optimal_s_values(min_s, max_s, min_input_size, max_input_size, random_tests):
-        average_optimal_s_values = []
-        input_sizes = []
-        num_points = 100
-
-        for i in range(min_input_size, max_input_size + 1, int((max_input_size - min_input_size) / num_points)):
-            input_sizes.append(i)
-
-        # Generate input sizes on a logarithmic scale
-        # input_sizes = np.logspace(np.log10(min_input_size), np.log10(max_input_size), num=num_points, dtype=int)
-        # input_sizes = list(dict.fromkeys(input_sizes))  # Remove duplicates
-
-        for input_size in input_sizes:
-            average_optimal_s_value = HybridSortKeyCmp.average_optimal_s_value(min_s, max_s, input_size, random_tests)
-            average_optimal_s_values.append(average_optimal_s_value)
-            print(average_optimal_s_value)
-
-        # print(input_sizes)
-        print(average_optimal_s_values)
-
-        return input_sizes, average_optimal_s_values
-
-
-    @staticmethod
-    def average_optimal_s_value(min_s, max_s, input_size, random_tests):
-        average_optimal_s_value = 0
-
-        for i in range(random_tests):
-            s_values, average_key_cmps = HybridSortKeyCmp.average_key_cmps_with_n_fixed(min_s, max_s, input_size, random_tests)
-            min_average_key_cmp = min(average_key_cmps)
-            min_average_key_cmp_index = average_key_cmps.index(min_average_key_cmp)
-            final_optimal_s_value = s_values[min_average_key_cmp_index]
-            average_optimal_s_value += final_optimal_s_value
-
-        average_optimal_s_value /= random_tests
-
-        return average_optimal_s_value
 
     
 # HybridSortKeyCmp.average_key_cmps_with_n_fixed(2, 20, 1000, 1)
