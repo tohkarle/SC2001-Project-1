@@ -1,22 +1,20 @@
-def hybrid_sort(arr, S):
-    # Once the size of a subarray is less than or equal to a threshold (S), the algorithm switches from Mergesort to Insertion Sort
-    if len(arr) <= S:
-        insertion_sort(arr)
-    else:
-        merge_sort(arr)
+class Mergesort:
 
-def merge_sort(arr):
-    if len(arr) > 1:
+    @staticmethod
+    def sort(arr, keyCmp):
+        if len(arr) > 1:
+            # Partition list into 2 equal size
+            mid = len(arr) // 2
+            left_half = arr[:mid]
+            right_half = arr[mid:]
 
-        # Partition list into 2 equal size
-        mid = len(arr) // 2
-        left_half = arr[:mid]
-        right_half = arr[mid:]
+            # Mergesort left_half and right_half
+            return Mergesort.sort(left_half, keyCmp) + Mergesort.sort(right_half, keyCmp) + Mergesort.merge(arr, left_half, right_half, keyCmp)
+        
+        return keyCmp
 
-        # Mergesort left_half and right_half
-        merge_sort(left_half)
-        merge_sort(right_half)
-
+    @staticmethod
+    def merge(arr, left_half, right_half, keyCmp):
         i = j = k = 0
 
         # Compare the first element of the 2 halves
@@ -26,11 +24,13 @@ def merge_sort(arr):
             if left_half[i] < right_half[j]:
                 arr[k] = left_half[i]
                 i += 1
+                keyCmp += 1
             
             # Else if right_half[j] is smaller, right_half[j] joins the end of the merged list
             else:
                 arr[k] = right_half[j]
                 j += 1
+                keyCmp += 1
             
             k += 1
 
@@ -46,12 +46,6 @@ def merge_sort(arr):
             j += 1
             k += 1
 
+        return keyCmp
+    
 
-def insertion_sort(arr):
-    for i in range(1, len(arr)):
-        key = arr[i]
-        j = i - 1
-        while j >= 0 and key < arr[j]:
-            arr[j + 1] = arr[j]
-            j -= 1
-        arr[j + 1] = key
