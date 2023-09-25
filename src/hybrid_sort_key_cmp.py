@@ -23,12 +23,8 @@ class HybridSortKeyCmp:
     def average_key_cmps_with_s_fixed(min_input_size, max_input_size, s_fixed, random_tests):
         # S fixed at 99 (TBC)
         # Input size range from 1000 to 10000000
-        # input_sizes = []
         average_key_cmps = []
         num_points = 100
-
-        # for i in range(min_input_size, max_input_size + 1, int((max_input_size - min_input_size) / num_points)):
-            # input_sizes.append(i)
 
         # Generate input sizes on a logarithmic scale
         input_sizes = np.logspace(np.log10(min_input_size), np.log10(max_input_size), num=num_points, dtype=int)
@@ -43,6 +39,13 @@ class HybridSortKeyCmp:
 
         return input_sizes, average_key_cmps
     
+
+    @staticmethod
+    def theoretical_nlogn_graph(input_sizes):
+        average_key_cmps = [n * np.log2(n) for n in input_sizes]
+
+        return average_key_cmps
+
 
     @staticmethod
     def average_key_cmps_with_n_fixed(min_s, max_s, input_size_fixed, random_tests):
