@@ -2,11 +2,12 @@ import random
 from VerticeEdgeb import Vertex
 from VerticeEdgeb import Edge
 
-class GraphGenerator:
+class GraphGeneratorB:
     @staticmethod
     def generate_random_graph(num_vertices, num_edges):
         if num_vertices < 2 or num_edges < num_vertices - 1 or num_edges > num_vertices * (num_vertices - 1) // 2:
-            raise ValueError("Invalid input parameters")
+            # raise ValueError("Invalid input parameters")
+            return
 
         # Create vertices
         vertices = [Vertex(i, f'V{i}') for i in range(num_vertices)]
