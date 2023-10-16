@@ -1,7 +1,8 @@
 # Example usage:
-from Heap_generate_input import GraphGenerator
+from GraphGeneratorB import GraphGenerator
 from VerticeEdgeb import Graph
 from HeapQueue import PriorityQueue
+
 # Create a random graph with 5 vertices and 7 edges
 num_vertices = 10
 num_edges = 20

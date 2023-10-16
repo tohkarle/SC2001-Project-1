@@ -1,6 +1,7 @@
 import random
-from VerticeEdge import Vertex
-from VerticeEdge import Edge
+from VerticeEdgeA import Vertex
+from VerticeEdgeA import Edge
+
 class GraphGenerator:
     @staticmethod
     def generate_random_graph(num_vertices, num_edges):
