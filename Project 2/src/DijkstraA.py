@@ -30,6 +30,9 @@ class DijkstraA:
 
             # Explore neighbors of the current vertex
             for neighbor_index, weight in enumerate(graph[int(current_vertex.label[1:])]):
+
+                priority_queue.time_compare += 1
+                
                 if weight > 0:  # There's an edge to the neighbor
                     neighbor = vertices[neighbor_index]
 

@@ -19,13 +19,16 @@ class DijkstraB:
             # Explore neighbors of the current vertex
             if current_vertex.vertex_id in graph.edges:
                 for neighbor, weight in graph.edges[current_vertex.vertex_id]:
+                    
+                    priority_queue.time_compare += 1
+
                     new_distance = current_vertex.distance + weight
                     if new_distance < neighbor.distance:
                         neighbor.distance = new_distance
                         neighbor.predecessor = current_vertex
                         priority_queue.decrease_key(neighbor, new_distance)
 
-        print("Time of compare:", priority_queue.time_compare)
+        # print("Time of compare:", priority_queue.time_compare)
         return priority_queue.time_compare
 
 
